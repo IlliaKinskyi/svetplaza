@@ -88,10 +88,21 @@ body {
   }
 }
 
+.middleBlock {
+  margin-left: 45px;
+  display: flex;
+  flex-direction: row;
+}
+
+.middleBlockRight {
+  width: 100%;
+  margin-right: 45px;
+}
+
 .catalog {
   border-top: 1px solid #E5E5E5;
   border-bottom: 1px solid #E5E5E5;
-  min-width: 215px;
+  width: 215px;
   margin-bottom: 15px;
 
     h1 {
@@ -116,11 +127,9 @@ body {
 
 .mainBanner {
   min-width: 1094px;
-  width: 100%;
   height: 380px;
   border: 1px solid #E5E5E5;
   margin-left: 40px;
-  margin-right: 45px;
   display: flex;
 
   h3 {
@@ -147,7 +156,6 @@ body {
     .mainBannerH1 {
       height: 96px;
       min-width: 642px;
-      width: 100%;
       margin-top: 20px;
       display: flex;
       align-items: center;
@@ -204,5 +212,22 @@ body {
       }
     }
 
+  }
+}
+
+.catalogDetailed {
+  border: 1px solid #E5E5E5;
+  margin-left: 40px;
+  max-height: 350px;
+  height: 100%;
+  margin-top: 40px;
+
+  .catalogCard {
+    width: 422px;
+    height: 162px;
+    background: #FFFFFF;
+    border: 1px solid #E5E5E5;
+    border-radius: 1px;
+    margin-bottom: 10px;
   }
 }
