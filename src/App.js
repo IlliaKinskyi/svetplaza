@@ -4,6 +4,8 @@ import './short.scss'
 import Header from './components/Header';
 import Header2 from './components/Header2';
 import Catalog from './components/Catalog';
+import MainBannerCard from './components/MainBannerCard';
+import CatalogCard from './components/CatalogCard';
 
 function App() {
       const [catalogItems, setCatalogItems] = React.useState([])
@@ -22,7 +24,6 @@ function App() {
         }
       }, [])
       
-   
   return (
     <div className="App">
       <Header/>
@@ -31,8 +32,8 @@ function App() {
       <div className="middleBlock">
         <div className="catalog">
           <h1>Каталог</h1>
-          {catalogItems.map((obj, index) => (
-            <Catalog catalogName={obj.name} key={index}/>))}
+          {catalogItems.map((obj, id) => (
+            <Catalog catalogName={obj.name} key={id}/>))}
         </div>
 
         <div className="middleBlockRight">
@@ -44,49 +45,21 @@ function App() {
               </div>
               <h3>Блеск и роскошь в интерьере!</h3>
               <a href="/catalog">В каталог</a>
+
               <div className="mainBannerCardBlock">
-            
-              <div className="mainBannerCard">
-                  <div className="mainBannerCardImg">
-                    <img src="./img/cardimg1.svg" alt="Maytoni"/>
-                  </div>
-                  <div className="mainBannerCardContent">
-                    <h5>Потолочный светильник Maytoni MOD058CL-L65B4K</h5>
-                    <span>11790 грн.</span>
-                  </div>
-                </div>
-
-                <div className="mainBannerCard">
-                  <div className="mainBannerCardImg">
-                    <img src="./img/cardimg1.svg" alt="Maytoni"/>
-                  </div>
-                  <div className="mainBannerCardContent">
-                    <h5>Потолочный светильник Maytoni MOD058CL-L65B4K</h5>
-                    <span>11790 грн.</span>
-                  </div>
-                </div>
-             
-                <div className="mainBannerCard">
-                  <div className="mainBannerCardImg">
-                    <img src="./img/cardimg1.svg" alt="Maytoni"/>
-                  </div>
-                  <div className="mainBannerCardContent">
-                    <h5>Потолочный светильник Maytoni MOD058CL-L65B4K</h5>
-                    <span>11790 грн.</span>
-                  </div>
-                </div>
-
+                <MainBannerCard/>
+                <MainBannerCard/>
+                <MainBannerCard/>
               </div>
             </div>
           </div>
 
           <div className="catalogDetailed">
-            <div className="catalogCard">
-
-            </div>
-            <div className="catalogCard">
-            </div>
+            {catalogItems.slice(0,6).map((obj) => (
+              <CatalogCard catalogName={obj.name} catalogItemQty={obj.qty} catalogItemImg={obj.img}/>
+            ))}
           </div>
+
         </div>
 
       </div>
