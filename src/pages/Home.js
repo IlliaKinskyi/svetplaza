@@ -5,13 +5,7 @@ import CatalogCard from "../components/CatalogCard";
 import ItemCard from "../components/ItemCard";
 
 const Home = (
-    {catalogItems,
-    filteredItems,
-    cardItems,
-    setCatalogItems,
-    setCardItems,
-    searchValue,
-    setSearchValue}
+    {catalogItems, filteredItems}
 ) => {
     return (
         <div>

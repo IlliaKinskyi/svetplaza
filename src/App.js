@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 import Cart from "./pages/Cart";
 import Home from "./pages/Home";
-import AppContext from "./context";
+import Header2 from "./components/Header2";
 
 function App() {
   const [catalogItems, setCatalogItems] = React.useState([]);
@@ -47,54 +47,25 @@ function App() {
     return item.name.toLowerCase().includes(searchValue.toLowerCase())
   })
 
+  const searchValueChange = (searchValue) => {
+    setSearchValue(searchValue)
+  }
+
   return (
-    <AppContext.Provider value={{catalogItems,cardItems,setCatalogItems,setCardItems,searchValue,setSearchValue}}>
     <div className="App">
 
-    
-
-      <Header />
-
-      <div className="header2">
-        <div>
-            <a href="/">
-              <img src="./img/logo.svg" alt="Logo" height="30%" className='ml45 mt27'/>
-            </a>
-        </div>
-    
-        <div className="search ml100">
-          <input 
-            type="search" 
-            placeholder="Введите название товара" 
-            onChange={(event) => setSearchValue(event.target.value)}
-          />
-          <button>Поиск</button>
-        </div>
-
-        <div className="header2-right">
-          <a href="/cart">
-            <img src="./img/heart.svg" width="25px" height="25px" alt="Favorites" />
-            <img src="./img/cart.svg" width="30px" height="30px" alt="Favorites" className="ml25"/>
-            <span className="ml15">278900,50 грн</span>
-          </a>
-        </div>
-
-      </div>
+      <Header/>
+      <Header2 onChange={searchValueChange}/>
 
       <Routes>
-        <Route path="/" element={<Home
-          catalogItems={catalogItems}
-          cardItems={cardItems}
-          setCatalogItems={setCatalogItems}
-          setCardItems={setCardItems}
-          filteredItems={filteredItems}
-          searchValue={searchValue}
-          setSearchValue={setSearchValue}
+        <Route path="/" element={<Home 
+        catalogItems={catalogItems}
+        filteredItems={filteredItems}
         />}/>
         <Route path="/cart" element={<Cart />} />
-    </Routes>
+      </Routes>
+    
     </div>
-    </AppContext.Provider>
   );
 }
 
