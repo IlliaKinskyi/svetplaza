@@ -1,9 +1,7 @@
 import React from 'react';
 
 const Header2 = ({onChange}) => {
-
-  // (event) => setSearchValue(event.target.value)
-
+  
   const searchValueChange = (event) => {
     onChange(event.target.value)
   }
@@ -27,8 +25,10 @@ const Header2 = ({onChange}) => {
 
           <div className="header2-right">
             <img src="./img/heart.svg" width="25px" height="25px" alt="Favorites" />
-            <img src="./img/cart.svg" width="30px" height="30px" alt="Favorites" className="ml25"/>
-            <span className="ml15">278900,50 грн</span>
+            <a href="/cart">
+              <img src="./img/cart.svg" width="30px" height="30px" alt="Favorites" className="ml25"/>
+              <span className="ml15">278900,50 грн</span>
+            </a>
           </div>
 
       </div>

@@ -5,8 +5,26 @@ import CatalogCard from "../components/CatalogCard";
 import ItemCard from "../components/ItemCard";
 
 const Home = (
-    {catalogItems, filteredItems}
+    {catalogItems, filteredItems, onAddToCart}
 ) => {
+    const renderItems = () => {
+        return filteredItems.map((item, id) => (
+            <ItemCard 
+            {...item}
+            // itemName={item.name} 
+            // itemId={item.id}
+            // itemDiameter={item.diameter}
+            // itemHeight={item.height}
+            // itemLampQty={item.lampQty}
+            // itemLampType={item.lampType}
+            // itemOldPrice={item.oldPrice}
+            // itemPrice={item.price}
+            // itemImage={item.image}
+            onPlus={(obj) => onAddToCart(obj)}
+            key={id}
+            />
+            ))
+    }
     return (
         <div>
             <div className="middleBlock">
@@ -46,6 +64,7 @@ const Home = (
                     catalogName={obj.name}
                     catalogItemQty={obj.qty}
                     catalogItemImg={obj.img}
+                    key={obj.id}
                 />
                 ))}
             </div>
@@ -63,20 +82,7 @@ const Home = (
             </div>
 
             <div className="itemPlaceBlock">
-            {filteredItems.map((obj, id) => (
-                <ItemCard 
-                itemName={obj.name} 
-                itemId={obj.id}
-                itemDiameter={obj.diameter}
-                itemHeight={obj.height}
-                itemLampQty={obj.lampQty}
-                itemLampType={obj.lampType}
-                itemOldPrice={obj.oldPrice}
-                itemPrice={obj.price}
-                itemImage={obj.image}
-                key={obj.id}
-                />
-                ))}
+            {renderItems()}
             </div>
         </div>
         </div>
