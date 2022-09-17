@@ -10,6 +10,7 @@ import Cart from "./pages/Cart";
 import Home from "./pages/Home";
 import Header2 from "./components/Header2";
 import axios from "axios";
+import AppContext from "./context";
 
 function App() {
   const [catalogItems, setCatalogItems] = React.useState([]);
@@ -95,7 +96,20 @@ function App() {
     setSearchValue(searchValue)
   }
 
+  const onDeleteFromCard = (obj) => {
+    try {
+      setCartItems(prev => prev.filter(item => Number(item.itemId) !== Number(obj.itemId)))
+      axios.delete(`https://63091d01f8a20183f76ec73c.mockapi.io/cart/${obj.itemId}`)
+    } catch (error) {
+      alert('Ошибка при удалении из корзины')
+      console.erroe(error)
+    }
+    
+
+  }
+
   return (
+    <AppContext.Provider value={{ catalogItems, cartItems, favorites, onAddToCart, setCartItems }}>
     <div className="App">
 
       <Header/>
@@ -107,11 +121,12 @@ function App() {
         filteredItems={filteredItems}
         onAddToCart={onAddToCart}
         />}/>
-        <Route path="/cart" element={<Cart />} />
+        <Route path="/cart" element={<Cart cartItems={cartItems} onDeleteFromCard={onDeleteFromCard}/>} />
       </Routes>
 
     
     </div>
+    </AppContext.Provider>
   );
 }
 

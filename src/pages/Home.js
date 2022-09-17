@@ -11,15 +11,6 @@ const Home = (
         return filteredItems.map((item, id) => (
             <ItemCard 
             {...item}
-            // itemName={item.name} 
-            // itemId={item.id}
-            // itemDiameter={item.diameter}
-            // itemHeight={item.height}
-            // itemLampQty={item.lampQty}
-            // itemLampType={item.lampType}
-            // itemOldPrice={item.oldPrice}
-            // itemPrice={item.price}
-            // itemImage={item.image}
             onPlus={(obj) => onAddToCart(obj)}
             key={id}
             />
