@@ -96,7 +96,7 @@ function App() {
     setSearchValue(searchValue)
   }
 
-  const onDeleteFromCard = (obj) => {
+  const onRemoveFromCard = (obj) => {
     try {
       setCartItems(prev => prev.filter(item => Number(item.itemId) !== Number(obj.itemId)))
       axios.delete(`https://63091d01f8a20183f76ec73c.mockapi.io/cart/${obj.itemId}`)
@@ -121,7 +121,7 @@ function App() {
         filteredItems={filteredItems}
         onAddToCart={onAddToCart}
         />}/>
-        <Route path="/cart" element={<Cart cartItems={cartItems} onDeleteFromCard={onDeleteFromCard}/>} />
+        <Route path="/cart" element={<Cart cartItems={cartItems} onRemoveFromCard={onRemoveFromCard}/>} />
       </Routes>
 
     

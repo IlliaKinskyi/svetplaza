@@ -43,6 +43,14 @@ body {
     height: 37px;
     position: relative;
 
+    button {
+      position: absolute;
+      height: 100%;
+      width: 80px;
+      right: 0px;
+
+    }
+
     input {
       height: 100%;
       width: 458px;
@@ -63,19 +71,6 @@ body {
     input::-moz-placeholder {
       color: #B1B1B1;
     }
-
-    button {
-      position: absolute;
-      height: 100%;
-      width: 80px;
-      right: 0px;
-      font-weight: 400;
-      font-size: 14px;
-      color: #FAFAFA;
-      outline: none;
-      border-style: none;
-      background-color: #15616D;
-    }
   }
   
   .header2-right {
@@ -93,6 +88,15 @@ body {
       color: #474A51;
     }
   }
+}
+
+.greenButton {
+  font-weight: 400;
+  font-size: 14px;
+  color: #FAFAFA;
+  outline: none;
+  border-style: none;
+  background-color: #15616D;
 }
 
 .middleBlock {
@@ -443,6 +447,8 @@ body {
   .cartBlock {
     display: flex;
     flex-direction: column;
+    width: 100%;
+    margin-right: 50px;
   }
 
 
@@ -518,8 +524,129 @@ body {
     box-shadow: 0px 5px 20px rgba(71, 74, 81, 0.1);
   }
 
-  .ttt {
-    box-shadow: 0px 5px 20px rgba(71, 74, 81, 0.1);
+}
+
+.cartOrdering {
+  width: 460px;
+  border: 1px solid #474A51;
+  margin-right: 45px;
+
+  h3 {
+    font-weight: 700;
+    font-size: 14px;
+    color: #333333;
+    margin-top: 30px;
+    margin-left: 20px;
+  }
+
+  select {
+    width: 420px;
+    height: 37px;
+    margin-left: 20px;
+    margin-right: 20px;
+    background: #FAFAFA;
+    border-radius: 2px;
+    border: none;
+    font-weight: 400;
+    font-size: 14px;
+    color: #B1B1B1;
+    padding: 10px 0px 10px 13px;
+    margin-bottom: 15px;
+  }
+
+  input {
+    margin-left: 20px;
+    width: 245px;
+    height: 33px;
+    font-weight: 400;
+    font-size: 14px;
+    color: #B1B1B1;
+    border-bottom: 2px solid #E5E5E5;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-radius: 2px;
+    padding-left: 13px;
   }
   
+  input::-webkit-input-placeholder {
+    color: #B1B1B1;
+  } 
+
+  input::-moz-placeholder {
+    color: #B1B1B1;
+  }
+
+  .whiteButton {
+    width: 130px;
+    height: 37px;
+    margin-left: 30px;
+    border: 1px solid #E5E5E5;
+    border-radius: 2px;
+    background-color: #fff;
+    font-weight: 500;
+    font-size: 14px;
+    color: #B1B1B1;
+  }
+
+  h1 {
+    margin-top: 30px;
+    margin-left: 20px;
+    font-weight: 900;
+    font-size: 24px;
+    color: #333333;
+  }
+
+  table {
+    margin-left: 20px;
+    margin-right: 20px;
+    border-spacing: 10px;
+
+      .tdleft {
+        font-weight: 400;
+        font-size: 14px;
+        color: #B1B1B1;
+        width: 100%;
+      }
+
+      .tdright {
+        font-weight: 500;
+        font-size: 14px;
+        text-align: right;
+        height: 17px;
+      }
+
+      .totalPrice {
+        font-weight: 700;
+        font-size: 24px;
+        color: #333333;
+        text-align: right;
+        height: 29px;
+        white-space: nowrap;
+      }
+  }
+
+  .cartOrderingBottom {
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    height: 37px;
+    margin-right: 20px;
+
+    button {
+      width: 213px;
+      height: 100%;
+      margin-left: 20px;
+      border-radius: 2px;
+    }
+
+    a {
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 14px;
+      color: #B1B1B1;
+    }
+
+  }
+
 }

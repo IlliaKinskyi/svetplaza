@@ -7,13 +7,13 @@ const CartItemCard = ({
     oldPrice,
     price,
     image,
-    onDelete
+    onRemove
 }) => {
 
     const obj = {itemId}
 
-        const onClickDelete = () => {
-            onDelete(obj)
+        const onClickRemove = () => {
+            onRemove(obj)
         }
 
     return (
@@ -34,7 +34,7 @@ const CartItemCard = ({
                     </div>
                     <div className="cartItemRight">
                         <img src="./img/heart-light.svg" alt="Add to Favorite"/>
-                        <img src="./img/x.svg" alt="Delete" onClick={onClickDelete} style={{cursor: "pointer"}}/>
+                        <img src="./img/x.svg" alt="Delete" onClick={onClickRemove} style={{cursor: "pointer"}}/>
                     </div>
                 </div>
     );

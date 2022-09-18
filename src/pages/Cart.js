@@ -1,13 +1,15 @@
 import React from 'react';
 import CartItemCard from '../components/CartItemCard';
+import { useCart } from '../hooks/useCart';
 
-const Cart = ({cartItems, onDeleteFromCard}) => {
+const Cart = ({onRemoveFromCard}) => {
+  const { cartItems, setCartItems, totalPrice } = useCart()
     const renderCartItems = () => {
         return cartItems.map((item, id) => (
             <CartItemCard 
             {...item}
             key={id}
-            onDelete={(obj) => onDeleteFromCard(obj)}
+            onRemove={(obj) => onRemoveFromCard(obj)}
             />
             ))
     }
@@ -45,7 +47,45 @@ const Cart = ({cartItems, onDeleteFromCard}) => {
                 {renderCartItems()}
             </div>
 
-            <div>Доставка и оплата</div>
+            <div className="cartOrdering">
+                <h3>Доставка и оплата</h3>
+                <select name="delivery" id="delivery">
+                    <option value="">Выберите способ доставки</option>
+                </select>
+                <select name="delivery" id="delivery">
+                    <option value="">Выберите способ оплаты</option>
+                </select>
+                <input type="text" placeholder="Введите промокод" 
+                />
+                <button type="submit" className="whiteButton">Применить</button>
+
+                <h1>О заказе</h1>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td className="tdleft">Товары ({cartItems.length})</td>
+                            <td className="tdright" style={{color: '#333333'}}>{totalPrice} грн.</td>
+                        </tr>
+                        <tr>
+                            <td className="tdleft">Скидки на товары</td>
+                            <td className="tdright" style={{color: '#DF5A5A'}}>3080</td>
+                        </tr>
+                        <tr>
+                            <td className="tdleft">Стоимость доставки</td>
+                            <td className="tdright" style={{color: '#15616D'}} >Бесплатно</td>
+                        </tr>
+                        <tr>
+                            <td className="tdleft">Итого</td>
+                            <td className="totalPrice">{totalPrice} грн.</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div className="cartOrderingBottom">
+                    <button className="greenButton">Перейти к оформлению</button>
+                    <a href="/">Продолжить покупки</a>
+                </div>
+            </div>
         </div>
 
         </div>

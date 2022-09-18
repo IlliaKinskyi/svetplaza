@@ -20,7 +20,7 @@ const Header2 = ({onChange}) => {
               placeholder="Введите название товара" 
               onChange={searchValueChange}
             />
-            <button>Поиск</button>
+            <button className="greenButton">Поиск</button>
           </div>
 
           <div className="header2-right">
