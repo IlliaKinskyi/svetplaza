@@ -10,7 +10,7 @@ const CartItemCard = ({
     onRemove
 }) => {
 
-    const obj = {itemId}
+    const obj = {itemId, id}
 
         const onClickRemove = () => {
             onRemove(obj)
@@ -31,10 +31,11 @@ const CartItemCard = ({
                     </div>
                     <div className="cartItemPrice">
                         {price} грн.
+                        <span>{oldPrice ? (oldPrice + ' грн.') : ''} </span>
                     </div>
                     <div className="cartItemRight">
                         <img src="./img/heart-light.svg" alt="Add to Favorite"/>
-                        <img src="./img/x.svg" alt="Delete" onClick={onClickRemove} style={{cursor: "pointer"}}/>
+                        <img src="./img/x.svg" alt="Remove" onClick={onClickRemove} style={{cursor: "pointer"}}/>
                     </div>
                 </div>
     );

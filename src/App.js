@@ -7,17 +7,17 @@ import {
   Route
 } from "react-router-dom";
 import Cart from "./pages/Cart";
+import Favorites from "./pages/Favorites";
 import Home from "./pages/Home";
 import Header2 from "./components/Header2";
 import axios from "axios";
 import AppContext from "./context";
 
 function App() {
-  const [catalogItems, setCatalogItems] = React.useState([]);
   const [cardItems, setCardItems] = React.useState([]);
   const [searchValue, setSearchValue] = React.useState('');
-  const [cartItems, setCartItems] = React.useState([])
-  const [favorites, setFavorites] = React.useState([])
+  const [cartItems, setCartItems] = React.useState([]);
+  const [favorites, setFavorites] = React.useState([]);
 
   React.useEffect(() => {
     async function fetchData() {
@@ -60,20 +60,32 @@ function App() {
     }
   }
 
-  React.useEffect(() => {
+  const onAddToFavorite = async (obj) => {
     try {
-      fetch("https://63091d01f8a20183f76ec73c.mockapi.io/Catalog")
-        .then((res) => {
-          return res.json();
-        })
-        .then((json) => {
-          setCatalogItems(json);
-        });
+      const findFavoriteItem = favorites.find(item => Number(item.itemId) === Number(obj.itemId))
+      if (findFavoriteItem) {
+        setFavorites(prev => prev.filter(item => Number(item.itemId) !== Number(obj.itemId)))
+        await axios.delete(`https://63091d01f8a20183f76ec73c.mockapi.io/favorites/${findFavoriteItem.id}`)
+      } else {
+        setFavorites(prev => [...prev, obj])
+        const {data} = await axios.post('https://63091d01f8a20183f76ec73c.mockapi.io/favorites', obj)
+        setFavorites(prev => prev.map(item => {
+          if (item.itemId === data.itemId) {
+            return {
+              ...item,
+              itemId: data.itemId
+            }
+          }
+        return item
+        }))
+      }
     } catch (error) {
-      console.log("Ошибка загрузки каталога");
+      alert('Ошибка при добавлении в избранные')
+      console.error(error)
     }
-  }, []);
+  }
 
+ 
   React.useEffect(() => {
     try {
       fetch("https://63091d01f8a20183f76ec73c.mockapi.io/item")
@@ -92,6 +104,10 @@ function App() {
     return item.name.toLowerCase().includes(searchValue.toLowerCase())
   })
 
+  const filteredFavorites = favorites.filter(item => {
+    return item.name.toLowerCase().includes(searchValue.toLowerCase())
+  })
+
   const searchValueChange = (searchValue) => {
     setSearchValue(searchValue)
   }
@@ -100,6 +116,7 @@ function App() {
     try {
       setCartItems(prev => prev.filter(item => Number(item.itemId) !== Number(obj.itemId)))
       axios.delete(`https://63091d01f8a20183f76ec73c.mockapi.io/cart/${obj.itemId}`)
+      console.log(obj)
     } catch (error) {
       alert('Ошибка при удалении из корзины')
       console.erroe(error)
@@ -108,20 +125,32 @@ function App() {
 
   }
 
+  const isItemFavorite = (id) => {
+    return favorites.some(obj => Number(obj.itemId) === Number(id))
+  }
+
   return (
-    <AppContext.Provider value={{ catalogItems, cartItems, favorites, onAddToCart, setCartItems }}>
+    <AppContext.Provider value={{ cartItems, favorites, onAddToCart, setCartItems, onAddToFavorite, isItemFavorite }}>
     <div className="App">
 
       <Header/>
       <Header2 onChange={searchValueChange}/>
 
       <Routes>
+        
         <Route path="/" element={<Home 
-        catalogItems={catalogItems}
         filteredItems={filteredItems}
         onAddToCart={onAddToCart}
+        onAddToFavorite={onAddToFavorite}
         />}/>
+
         <Route path="/cart" element={<Cart cartItems={cartItems} onRemoveFromCard={onRemoveFromCard}/>} />
+
+        <Route path="/favorites" element={<Favorites 
+        favorites={favorites} 
+        filteredFavorites={filteredFavorites} 
+        />}/>
+
       </Routes>
 
     

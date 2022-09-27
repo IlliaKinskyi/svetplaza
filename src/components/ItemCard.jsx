@@ -1,4 +1,5 @@
 import React from 'react';
+import AppContext from '../context';
 
 const ItemCard = ({
   id,
@@ -10,14 +11,26 @@ const ItemCard = ({
   oldPrice,
   price,
   image,
-  onPlus
+  onPlus,
+  onFavorite,
+  favorited = false
 }) => {
 
-  const obj = {itemId: id, name, diameter, height, lampQty, lampType, oldPrice, price, image}
+  const { isItemFavorite } = React.useContext(AppContext)
+  const [isFavorite, setIsFavorite] = React.useState(favorited)
+
+  const obj = {itemId: id, id, name, diameter, height, lampQty, lampType, oldPrice, price, image}
 
   const onClickPlus = () => {
     onPlus(obj)
   }
+
+  const onClickFavorites = () => {
+    onFavorite(obj)
+    setIsFavorite(!isFavorite)
+  }
+
+
     return (
         <div className="itemCard">
             <img
@@ -48,7 +61,7 @@ const ItemCard = ({
                 </tr>
                 </tbody>
               </table>
-              <p>{oldPrice} грн</p>
+              <p>{oldPrice ? oldPrice + ' грн.' : ' '}</p>
 
               <div className="itemPlaceFooter">
                 <button onClick={onClickPlus}> 
@@ -57,7 +70,11 @@ const ItemCard = ({
                   {price} грн
                 </button>
 
-                <img src="./img/heart.svg" alt="Add to Favorite" width="25px" height="25px" style={{position: 'absolute', right: '14px', bottom: '2px', cursor: 'pointer'}}/>
+                <img src={
+                  isItemFavorite(id)
+                  ? "./img/heart-active.svg"
+                  : "./img/heart.svg"
+                  } alt="Add to Favorite" width="25px" height="25px" style={{position: 'absolute', right: '14px', bottom: '2px', cursor: 'pointer'}} onClick={onClickFavorites}/>
               </div>
 
             </div>
