@@ -19,14 +19,14 @@ const PagesMainBar = ({header, array}) => {
 
     return (
         <div>
-            <div className="mainBar">
+            <div className="bar">
                 <a href='/' className="main">Главная</a>
                 <img src="./img/ellipse.svg" alt="Ellipse" width="4px" height="4px"></img>
-                <span className="mainCart">{header}</span>
+                <span className="bar-cart">{header}</span>
             </div>
-            <div className="mainBarHeader">
-                <h1 className="cartHeaderH1">{header}</h1>
-                <span className="mainBarHeaderItemQty">{array.length} {getItemQtyDeclination()}</span>
+            <div className="bar-header">
+                <h1 className="bar-header__h1">{header}</h1>
+                <span className="bar-header__qty">{array.length} {getItemQtyDeclination()}</span>
             </div>
         </div>
     );

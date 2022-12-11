@@ -32,38 +32,38 @@ const ItemCard = ({
 
 
     return (
-        <div className="itemCard">
+        <div className="item-card">
             <img
               src={image}
               alt={name}
               width="260px"
               height="200px"
             />
-            <div className="itemCardInfo">
+            <div className="item-card__info">
               <h6>{name}</h6>
-              <table className="itemTable">
+              <table className="table">
                 <tbody>
                 <tr>
-                  <td className="itemTdLeft">Диаметр, мм</td>
-                  <td className="itemTdRight">{diameter}</td>
+                  <td className="table-td__left">Диаметр, мм</td>
+                  <td className="table-td__right">{diameter}</td>
                 </tr>
                 <tr>
-                  <td className="itemTdLeft">Высота, мм</td>
-                  <td className="itemTdRight">{height}</td>
+                  <td className="table-td__left">Высота, мм</td>
+                  <td className="table-td__right">{height}</td>
                 </tr>
                 <tr>
-                  <td className="itemTdLeft">Кол-во ламп</td>
-                  <td className="itemTdRight">{lampQty}</td>
+                  <td className="table-td__left">Кол-во ламп</td>
+                  <td className="table-td__right">{lampQty}</td>
                 </tr>
                 <tr>
-                  <td className="itemTdLeft">Тип лампы</td>
-                  <td className="itemTdRight">{lampType}</td>
+                  <td className="table-td__left">Тип лампы</td>
+                  <td className="table-td__right">{lampType}</td>
                 </tr>
                 </tbody>
               </table>
               <p>{oldPrice ? oldPrice + ' грн.' : ' '}</p>
 
-              <div className="itemPlaceFooter">
+              <div className="item-place__footer">
                 <button onClick={onClickPlus}> 
                   <img src="./img/itemcart.svg" alt="Add to cart"/>
                   <img src="./img/itemcartline.svg" alt="Line"/>
